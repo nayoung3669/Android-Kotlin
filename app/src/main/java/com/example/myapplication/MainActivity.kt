@@ -3,85 +3,70 @@ package com.example.myapplication
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.Toast
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.*
 import com.example.myapplication.R.drawable
 import kotlin.math.pow
 
 class MainActivity : AppCompatActivity() {
-    lateinit var edit1: EditText;
-    lateinit var edit2: EditText
-    lateinit var btnAdd: Button;
-    lateinit var btnSubtract: Button
-    lateinit var btnMultiply: Button;
-    lateinit var btnDivide: Button
-    lateinit var btnSquare: Button;
-    lateinit var textResult: TextView
-    lateinit var num1: String;
-    lateinit var num2: String
-    var result: Int? = null
+    lateinit var text1: TextView
+    lateinit var text2: TextView
+    lateinit var chkAgree: CheckBox
+    lateinit var rGroup1: RadioGroup
+    lateinit var rdoDog: RadioButton
+    lateinit var rdoCat: RadioButton
+    lateinit var rdoHam: RadioButton
+    lateinit var rdoBara: RadioButton
+    lateinit var rdoRabbit: RadioButton
+    lateinit var btnOK: Button
+    lateinit var imgPet: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        title = "초간단 계산기"
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setIcon(drawable.ic_launcher)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        title = "애완동물 사진 보기"
 
-        edit1 = findViewById(R.id.Edit1)
-        edit2 = findViewById(R.id.Edit2)
-        textResult = findViewById(R.id.TextResult)
+        text1 = findViewById(R.id.Text1) // 검색시작?
+        chkAgree = findViewById(R.id.ChkAgree)
 
-        btnAdd = findViewById(R.id.BtnAdd)
-        btnSubtract = findViewById(R.id.BtnSubtract)
-        btnMultiply = findViewById(R.id.BtnMultiply)
-        btnDivide = findViewById(R.id.BtnDivide)
-        btnSquare = findViewById(R.id.BtnSquare)
+        text2 = findViewById(R.id.Text2)
+        rGroup1 = findViewById(R.id.Rgroup1)
+        rdoDog = findViewById(R.id.RdoDog)
+        rdoCat = findViewById(R.id.RdoCat)
+        rdoHam = findViewById(R.id.RdoHam)
+        rdoBara = findViewById(R.id.RdoBara)
+        rdoRabbit = findViewById(R.id.RdoRabbit)
 
-        btnAdd.setOnTouchListener { view, motionEvent ->
-            num1 = edit1.text.toString()
-            num2 = edit2.text.toString()
-            result = Integer.parseInt(num1) + Integer.parseInt(num2)
-            textResult.text = "계산 결과 : " + result.toString()
-            false
-        }
+        btnOK = findViewById(R.id.BtnOK)
+        imgPet = findViewById(R.id.ImgPet)
 
-        btnSubtract.setOnTouchListener { view, motionEvent ->
-            num1 = edit1.text.toString()
-            num2 = edit2.text.toString()
-            result = Integer.parseInt(num1) - Integer.parseInt(num2)
-            textResult.text = "계산 결과 : " + result.toString()
-            false
-        }
-
-        btnMultiply.setOnTouchListener { view, motionEvent ->
-            num1 = edit1.text.toString()
-            num2 = edit2.text.toString()
-            result = Integer.parseInt(num1) * Integer.parseInt(num2)
-            textResult.text = "계산 결과 : " + result.toString()
-            false
-        }
-
-        btnDivide.setOnTouchListener { view, motionEvent ->
-            num1 = edit1.text.toString()
-            num2 = edit2.text.toString()
-            result = Integer.parseInt(num1) / Integer.parseInt(num2)
-            textResult.text = "계산 결과 : " + result.toString()
-            false
-        }
-
-        btnSquare.setOnTouchListener { view, motionEvent ->
-            num1 = edit1.text.toString()
-            num2 = edit2.text.toString()
-            if (num2.isNotEmpty()) {
-                result = Integer.parseInt(num1).toDouble().pow(Integer.parseInt(num2)).toInt()
-                textResult.text = "계산 결과 : $result"
+        chkAgree.setOnCheckedChangeListener { compoundButton, b ->
+            if (chkAgree.isChecked == true) {
+                text2.visibility = android.view.View.VISIBLE
+                rGroup1.visibility = android.view.View.VISIBLE
+                btnOK.visibility = android.view.View.VISIBLE
+                imgPet.visibility = android.view.View.VISIBLE
             } else {
-                textResult.text = "두 번째 숫자를 입력해주세요."
+                text2.visibility = android.view.View.INVISIBLE
+                rGroup1.visibility = android.view.View.INVISIBLE
+                btnOK.visibility = android.view.View.INVISIBLE
+                imgPet.visibility = android.view.View.INVISIBLE
+
             }
-            false
         }
+
+        btnOK.setOnClickListener {
+            when (rGroup1.checkedRadioButtonId) {
+                R.id.RdoDog -> imgPet.setImageResource(R.drawable.dog)
+                R.id.RdoCat -> imgPet.setImageResource(R.drawable.cat)
+                R.id.RdoHam -> imgPet.setImageResource(R.drawable.ham)
+                R.id.RdoBara -> imgPet.setImageResource(R.drawable.bara)
+                R.id.RdoRabbit -> imgPet.setImageResource(R.drawable.rabbit)
+                else -> Toast.makeText(applicationContext, "동물 먼저 선택하세요.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
 }
