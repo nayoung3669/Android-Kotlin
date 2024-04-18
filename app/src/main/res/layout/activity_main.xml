@@ -4,74 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="right|bottom"
     android:orientation="vertical"
     tools:context=".MainActivity"
     tools:ignore="ExtraText">
 
-    <TextView
-        android:id="@+id/Text1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="선택을 시작하시겠습니까?" />
 
-    <CheckBox
-        android:id="@+id/ChkAgree"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="시작함" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Text2"
-        android:text="좋아하는 애완동물은?"
-        android:visibility="invisible" />
-
-    <RadioGroup
-        android:id="@+id/Rgroup1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible">
-
-        <RadioButton
-            android:id="@+id/RdoDog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="강아지 " />
-
-        <RadioButton
-            android:id="@+id/RdoCat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="고양이" />
-
-        <RadioButton
-            android:id="@+id/RdoHam"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="햄햄" />
-
-        <RadioButton
-            android:id="@+id/RdoBara"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="카피바라" />
-
-        <RadioButton
-            android:id="@+id/RdoRabbit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="토끼" />
-    </RadioGroup>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/BtnOK"
-        android:text="선택완료"
-        android:visibility="invisible" />
-    <ImageView
+        android:layout_gravity="right"
+        android:text="오른쪽" />
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/ImgPet"
-        android:visibility="invisible" />
+        android:layout_gravity="center"
+        android:text="중앙" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="왼쪽" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CheckBox" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Switch" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Switch" />
 </LinearLayout>
+
