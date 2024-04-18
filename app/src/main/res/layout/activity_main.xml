@@ -4,43 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="right|bottom"
     android:orientation="vertical"
     tools:context=".MainActivity"
     tools:ignore="ExtraText">
 
-
-    <Button
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="오른쪽" />
+        android:baselineAligned="true">
 
-    <Button
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="버튼1" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:text="버튼2" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:text="버튼3" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="중앙" />
+        android:baselineAligned="false">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:text="왼쪽" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:textSize="10dp"
+            android:background="#CCC"
+            android:text="글자1" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CheckBox" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_marginRight="10dp"
+            android:textSize="20dp"
+            android:background="#CCC"
+            android:text="글자2" />
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Switch" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:layout_marginRight="10dp"
+            android:textSize="30dp"
+            android:background="#CCC"
+            android:text="글자3" />
+    </LinearLayout>
 
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Switch" />
 </LinearLayout>
 
