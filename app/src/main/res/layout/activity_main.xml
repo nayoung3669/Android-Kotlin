@@ -9,38 +9,44 @@
     tools:ignore="ExtraText">
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:id="@+id/baseBtn"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_centerHorizontal="true"
-        android:text="위쪽" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="중앙" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:text="좌측" />
+        android:text="기준 위젯" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:text="우측" />
+        android:layout_alignTop="@+id/baseBtn"
+        android:layout_toLeftOf="@+id/baseBtn"
+        android:text="1번" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="아래" />
+        android:layout_alignBaseline="@+id/baseBtn"
+        android:layout_toLeftOf="@+id/baseBtn"
+        android:text="2번" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/baseBtn"
+        android:layout_toLeftOf="@+id/baseBtn"
+        android:text="3번" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/baseBtn"
+        android:layout_alignLeft="@+id/baseBtn"
+        android:text="4번" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/baseBtn"
+        android:layout_alignRight="@+id/baseBtn"
+        android:text="5번" />
 </RelativeLayout>
 
