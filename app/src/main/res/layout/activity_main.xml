@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,45 +8,36 @@
     tools:context=".MainActivity"
     tools:ignore="ExtraText">
 
-    <Button
-        android:id="@+id/baseBtn"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="기준 위젯" />
+    <TableRow>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/baseBtn"
-        android:layout_toLeftOf="@+id/baseBtn"
-        android:text="1번" />
+        <Button
+            android:layout_width="60dp"
+            android:text="1" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/baseBtn"
-        android:layout_toLeftOf="@+id/baseBtn"
-        android:text="2번" />
+        <Button
+            android:layout_width="60dp"
+            android:layout_span="2"
+            android:text="2" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/baseBtn"
-        android:layout_toLeftOf="@+id/baseBtn"
-        android:text="3번" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/baseBtn"
-        android:layout_alignLeft="@+id/baseBtn"
-        android:text="4번" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/baseBtn"
-        android:layout_alignRight="@+id/baseBtn"
-        android:text="5번" />
-</RelativeLayout>
+        <Button
+            android:layout_width="60dp"
+            android:text="3" />
+    </TableRow>
+    <TableRow>
+
+        <Button
+            android:layout_width="60dp"
+            android:layout_column="1"
+            android:text="4" />
+
+        <Button
+            android:layout_width="60dp"
+            android:text="5" />
+
+        <Button
+            android:layout_width="60dp"
+            android:text="6" />
+    </TableRow>
+
+</TableLayout>
 
