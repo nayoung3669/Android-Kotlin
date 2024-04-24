@@ -32,12 +32,73 @@ class MainActivity : AppCompatActivity() {
         R.id.BtnNum8,
         R.id.BtnNum9
     )
+    internal var I: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setIcon(drawable.ic_launcher)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        title = "테이블 레이아웃 계산기"
 
+        edit1 = findViewById<EditText>(R.id.Edit1)
+        edit2 = findViewById<EditText>(R.id.Edit2)
+
+        btnAdd = findViewById<Button>(R.id.BtnAdd)
+        btnSub = findViewById<Button>(R.id.BtnSub)
+        btnMul = findViewById<Button>(R.id.BtnMul)
+        btnDiv = findViewById<Button>(R.id.BtnDiv)
+        textResult = findViewById<TextView>(R.id.TextResult)
+
+        btnAdd.setOnTouchListener { view, motionEvent ->
+            num1 = edit1.text.toString()
+            num2 = edit2.text.toString()
+            result = Integer.parseInt(num1) + Integer.parseInt(num2)
+            textResult.text = "계산 결과 : " + result.toString()
+            false
+        }
+
+        btnSub.setOnTouchListener { view, motionEvent ->
+            num1 = edit1.text.toString()
+            num2 = edit2.text.toString()
+            result = Integer.parseInt(num1) - Integer.parseInt(num2)
+            textResult.text = "계산 결과 : " + result.toString()
+            false
+        }
+
+        btnMul.setOnTouchListener { view, motionEvent ->
+            num1 = edit1.text.toString()
+            num2 = edit2.text.toString()
+            result = Integer.parseInt(num1) * Integer.parseInt(num2)
+            textResult.text = "계산 결과 : " + result.toString()
+            false
+        }
+
+        btnDiv.setOnTouchListener { view, motionEvent ->
+            num1 = edit1.text.toString()
+            num2 = edit2.text.toString()
+            result = Integer.parseInt(num1) / Integer.parseInt(num2)
+            textResult.text = "계산 결과 : " + result.toString()
+            false
+        }
+
+        for (i in 0..9 step 1) {
+            numButtons.add(findViewById<Button>(numBtnIDs[i]))
+        }
+
+        for (i in 0..numBtnIDs.size - 1 step 1) {
+            numButtons[i].setOnClickListener {
+                if (edit1.isFocused == true) {
+                    num1 = edit1.text.toString() + numButtons[i].getText().toString()
+                    edit1.setText(num1)
+                } else if (edit2.isFocused == true) {
+                    num2 = edit2.text.toString() + numButtons[i].getText().toString()
+                    edit2.setText(num2)
+                } else {
+                    Toast.makeText(applicationContext, "먼저 에디트 텍스트를 선택하세요.", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        }
     }
 }

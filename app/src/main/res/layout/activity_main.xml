@@ -59,28 +59,28 @@
     <TableRow>
 
         <Button
-            android:layout_weight="1"
             android:id="@+id/BtnNum5"
+            android:layout_weight="1"
             android:text="5" />
 
         <Button
-            android:layout_weight="1"
             android:id="@+id/BtnNum6"
+            android:layout_weight="1"
             android:text="6" />
 
         <Button
-            android:layout_weight="1"
             android:id="@+id/BtnNum7"
+            android:layout_weight="1"
             android:text="7" />
 
         <Button
-            android:layout_weight="1"
             android:id="@+id/BtnNum8"
+            android:layout_weight="1"
             android:text="8" />
 
         <Button
-            android:layout_weight="1"
             android:id="@+id/BtnNum9"
+            android:layout_weight="1"
             android:text="9" />
     </TableRow>
 
@@ -133,4 +133,3 @@
 
 
 </TableLayout>
-
