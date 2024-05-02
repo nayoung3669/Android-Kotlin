@@ -3,102 +3,90 @@ package com.example.myapplication
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock
 import android.view.View
-import android.widget.*
-import com.example.myapplication.R.drawable
-import kotlin.math.pow
+import android.widget.Button
+import android.widget.CalendarView
+import android.widget.Chronometer
+import android.widget.RadioButton
+import android.widget.TextView
+import android.widget.TimePicker
 
 class MainActivity : AppCompatActivity() {
-    lateinit internal var edit1: EditText
-    lateinit internal var edit2: EditText
-    lateinit internal var btnAdd: Button
-    lateinit internal var btnSub: Button
-    lateinit internal var btnMul: Button
-    lateinit internal var btnDiv: Button
-    lateinit internal var textResult: TextView
-    lateinit internal var num1: String
-    lateinit internal var num2: String
-    internal var result: Int? = null
-    internal var numButtons = ArrayList<Button>(10)
-    internal var numBtnIDs = arrayOf(
-        R.id.BtnNum0,
-        R.id.BtnNum1,
-        R.id.BtnNum2,
-        R.id.BtnNum3,
-        R.id.BtnNum4,
-        R.id.BtnNum5,
-        R.id.BtnNum6,
-        R.id.BtnNum7,
-        R.id.BtnNum8,
-        R.id.BtnNum9
-    )
-    internal var I: Int = 0
+
+    lateinit var chrono: Chronometer
+    lateinit var btnStart: Button
+    lateinit var btnEnd: Button
+    lateinit var rdoCal: RadioButton
+    lateinit var rdoTime: RadioButton
+    lateinit var calView: CalendarView
+    lateinit var tPicker: TimePicker
+    lateinit var tvYear: TextView
+    lateinit var tvMonth: TextView
+    lateinit var tvDay: TextView
+    lateinit var tvHour: TextView
+    lateinit var tvMinute: TextView
+    var selectYear: Int = 0
+    var selectMonth: Int = 0
+    var selectDay: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-        supportActionBar?.setIcon(drawable.ic_launcher)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        title = "테이블 레이아웃 계산기"
 
-        edit1 = findViewById<EditText>(R.id.Edit1)
-        edit2 = findViewById<EditText>(R.id.Edit2)
+        title = "시간 예약"
 
-        btnAdd = findViewById<Button>(R.id.BtnAdd)
-        btnSub = findViewById<Button>(R.id.BtnSub)
-        btnMul = findViewById<Button>(R.id.BtnMul)
-        btnDiv = findViewById<Button>(R.id.BtnDiv)
-        textResult = findViewById<TextView>(R.id.TextResult)
+        btnStart = findViewById(R.id.btnStart)
+        btnEnd = findViewById(R.id.btnEnd)
 
-        btnAdd.setOnTouchListener { view, motionEvent ->
-            num1 = edit1.text.toString()
-            num2 = edit2.text.toString()
-            result = Integer.parseInt(num1) + Integer.parseInt(num2)
-            textResult.text = "계산 결과 : " + result.toString()
-            false
+        chrono = findViewById(R.id.chronometer1)
+
+        rdoCal = findViewById(R.id.rdoCal)
+        rdoTime = findViewById(R.id.rdoTime)
+
+        tPicker = findViewById(R.id.timePicker1)
+        calView = findViewById(R.id.calendarView1)
+
+        tvYear = findViewById(R.id.tvYear)
+        tvMonth = findViewById(R.id.tvMonth)
+        tvDay = findViewById(R.id.tvDay)
+        tvHour = findViewById(R.id.tvHour)
+        tvMinute = findViewById(R.id.tvMinute)
+
+        tPicker.visibility = View.INVISIBLE
+        calView.visibility = View.INVISIBLE
+
+        rdoCal.setOnClickListener{
+            tPicker.visibility = View.INVISIBLE
+            calView.visibility = View.VISIBLE
         }
 
-        btnSub.setOnTouchListener { view, motionEvent ->
-            num1 = edit1.text.toString()
-            num2 = edit2.text.toString()
-            result = Integer.parseInt(num1) - Integer.parseInt(num2)
-            textResult.text = "계산 결과 : " + result.toString()
-            false
+        rdoTime.setOnClickListener{
+            tPicker.visibility = View.VISIBLE
+            calView.visibility = View.INVISIBLE
         }
 
-        btnMul.setOnTouchListener { view, motionEvent ->
-            num1 = edit1.text.toString()
-            num2 = edit2.text.toString()
-            result = Integer.parseInt(num1) * Integer.parseInt(num2)
-            textResult.text = "계산 결과 : " + result.toString()
-            false
+        btnStart.setOnClickListener {
+            chrono.base = SystemClock.elapsedRealtime()
+            chrono.start()
+            chrono.setTextColor(Color.RED)
         }
 
-        btnDiv.setOnTouchListener { view, motionEvent ->
-            num1 = edit1.text.toString()
-            num2 = edit2.text.toString()
-            result = Integer.parseInt(num1) / Integer.parseInt(num2)
-            textResult.text = "계산 결과 : " + result.toString()
-            false
+        btnEnd.setOnClickListener {
+            chrono.stop()
+            chrono.setTextColor(Color.BLUE)
+            tvYear.text = Integer.toString(selectYear)
+            tvMonth.text = Integer.toString(selectMonth)
+            tvDay.text = Integer.toString(selectDay)
+
+            tvHour.text = Integer.toString(tPicker.getHour())
+            tvMinute.text = Integer.toString(tPicker.getMinute())
         }
 
-        for (i in 0..9 step 1) {
-            numButtons.add(findViewById<Button>(numBtnIDs[i]))
-        }
-
-        for (i in 0..numBtnIDs.size - 1 step 1) {
-            numButtons[i].setOnClickListener {
-                if (edit1.isFocused == true) {
-                    num1 = edit1.text.toString() + numButtons[i].getText().toString()
-                    edit1.setText(num1)
-                } else if (edit2.isFocused == true) {
-                    num2 = edit2.text.toString() + numButtons[i].getText().toString()
-                    edit2.setText(num2)
-                } else {
-                    Toast.makeText(applicationContext, "먼저 에디트 텍스트를 선택하세요.", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
+        calView.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            selectYear = year
+            selectMonth = month + 1
+            selectDay = dayOfMonth
         }
     }
 }
