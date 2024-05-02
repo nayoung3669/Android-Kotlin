@@ -1,92 +1,24 @@
-package com.example.myapplication
+package com.example.etcwidget
 
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.SystemClock
-import android.view.View
-import android.widget.Button
-import android.widget.CalendarView
-import android.widget.Chronometer
-import android.widget.RadioButton
-import android.widget.TextView
-import android.widget.TimePicker
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.MultiAutoCompleteTextView
 
 class MainActivity : AppCompatActivity() {
-
-    lateinit var chrono: Chronometer
-    lateinit var btnStart: Button
-    lateinit var btnEnd: Button
-    lateinit var rdoCal: RadioButton
-    lateinit var rdoTime: RadioButton
-    lateinit var calView: CalendarView
-    lateinit var tPicker: TimePicker
-    lateinit var tvYear: TextView
-    lateinit var tvMonth: TextView
-    lateinit var tvDay: TextView
-    lateinit var tvHour: TextView
-    lateinit var tvMinute: TextView
-    var selectYear: Int = 0
-    var selectMonth: Int = 0
-    var selectDay: Int = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        title = "시간 예약"
+        var items = arrayOf("CSI-뉴욕","CSI-라스베가스", "CSI-마이애미","Friends","Fringe","Loast")
+        var auto = findViewById<AutoCompleteTextView>(R.id.autoCompleteTextView1)
+        var adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line,items)
+        auto.setAdapter(adapter)
 
-        btnStart = findViewById(R.id.btnStart)
-        btnEnd = findViewById(R.id.btnEnd)
-
-        chrono = findViewById(R.id.chronometer1)
-
-        rdoCal = findViewById(R.id.rdoCal)
-        rdoTime = findViewById(R.id.rdoTime)
-
-        tPicker = findViewById(R.id.timePicker1)
-        calView = findViewById(R.id.calendarView1)
-
-        tvYear = findViewById(R.id.tvYear)
-        tvMonth = findViewById(R.id.tvMonth)
-        tvDay = findViewById(R.id.tvDay)
-        tvHour = findViewById(R.id.tvHour)
-        tvMinute = findViewById(R.id.tvMinute)
-
-        tPicker.visibility = View.INVISIBLE
-        calView.visibility = View.INVISIBLE
-
-        rdoCal.setOnClickListener{
-            tPicker.visibility = View.INVISIBLE
-            calView.visibility = View.VISIBLE
-        }
-
-        rdoTime.setOnClickListener{
-            tPicker.visibility = View.VISIBLE
-            calView.visibility = View.INVISIBLE
-        }
-
-        btnStart.setOnClickListener {
-            chrono.base = SystemClock.elapsedRealtime()
-            chrono.start()
-            chrono.setTextColor(Color.RED)
-        }
-
-        btnEnd.setOnClickListener {
-            chrono.stop()
-            chrono.setTextColor(Color.BLUE)
-            tvYear.text = Integer.toString(selectYear)
-            tvMonth.text = Integer.toString(selectMonth)
-            tvDay.text = Integer.toString(selectDay)
-
-            tvHour.text = Integer.toString(tPicker.getHour())
-            tvMinute.text = Integer.toString(tPicker.getMinute())
-        }
-
-        calView.setOnDateChangeListener { view, year, month, dayOfMonth ->
-            selectYear = year
-            selectMonth = month + 1
-            selectDay = dayOfMonth
-        }
+        var multi = findViewById<MultiAutoCompleteTextView>(R.id.multiAutoCompleteTextView1)
+        var token = MultiAutoCompleteTextView.CommaTokenizer()
+        multi.setTokenizer(token)
+        auto.setAdapter(adapter)
     }
 }
