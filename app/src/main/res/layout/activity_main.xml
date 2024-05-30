@@ -1,26 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
-    <DatePicker
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:datePickerMode="spinner"
-        android:id="@+id/datePicker1"
-        android:calendarViewShown="false" />
-    <EditText
+    <android.widget.Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edtDiary"
-        android:background="#00ff00"
-        android:lines="8" />
-    <Button
+        android:id="@+id/btnMkdir"
+        android:text="SD 카드에 디렉터리 생성"/>
+    <android.widget.Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnWrite"
-        android:enabled="false"
-        android:text="Button" />
-
+        android:id="@+id/btnRmdir"
+        android:text="SD 카드에 디렉터리 삭제"/>
 </LinearLayout>

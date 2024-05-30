@@ -3,68 +3,32 @@ package com.example.myapplication
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.widget.Button
-import android.widget.DatePicker
 import android.widget.EditText
-import android.widget.Toast
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.io.IOException
-import java.util.Calendar
+import androidx.core.app.ActivityCompat
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
-    lateinit var dp: DatePicker
-    lateinit var edtDiary: EditText
-    lateinit var btnWrite: Button
-    lateinit var fileName: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        title = "간단 일기장"
+        ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE), Context.MODE_PRIVATE)
 
-        dp = findViewById<DatePicker>(R.id.datePicker1)
-        edtDiary = findViewById(R.id.edtDiary)
-        btnWrite = findViewById(R.id.btnWrite)
+        var btnMkdir: Button
+        var btnRmdir: EditText
+        btnMkdir = findViewById(R.id.btnMkdir)
+        btnRmdir = findViewById(R.id.btnRmdir)
 
-        var cal = Calendar.getInstance()
-        var cYear = cal.get(Calendar.YEAR)
-        var cMonth = cal.get(Calendar.MONTH)
-        var cDay = cal.get(Calendar.DAY_OF_MONTH)
+        var strSDpath = Environment.getExternalStorageDirectory().absolutePath
+        var myDir = File("$strSDpath/mydir")
 
-        dp.init(cYear, cMonth, cDay) { view, year, monthOfYear, dayOfMonth ->
-            fileName = (Integer.toString(year) + "_"
-                    + Integer.toString(monthOfYear + 1) + "_"
-                    + Integer.toString(dayOfMonth) + ".txt")
-            var str = readDiary(fileName)
-            edtDiary.setText(str)
-            btnWrite.isEnabled = true
+        btnMkdir.setOnClickListener {
+            myDir.mkdir()
         }
 
-        btnWrite.setOnClickListener{
-            var outFs = openFileOutput(fileName, Context.MODE_PRIVATE)
-            var str = edtDiary.text.toString()
-            outFs.write(str.toByteArray())
-            outFs.close()
-            Toast.makeText(applicationContext, "$fileName 이 저장됨", Toast.LENGTH_SHORT).show()
+        btnRmdir.setOnClickListener {
+            myDir.delete()
         }
-
     }
-
-    fun readDiary(fName: String): String? {
-        var diaryStr: String? = null
-        var inFs: FileInputStream
-        try {
-            inFs = openFileInput(fName)
-            var txt = ByteArray(500)
-            inFs.read(txt)
-            inFs.close()
-            diaryStr = txt.toString(Charsets.UTF_8).trim()
-            btnWrite.text = "수정하기"
-        } catch (e: IOException) {
-            edtDiary.hint = "일기 없음"
-            btnWrite.text = " tofh wjwkd"
-        }
-        return null
-    }
-
 }

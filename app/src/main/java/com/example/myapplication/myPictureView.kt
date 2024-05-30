@@ -16,6 +16,7 @@ class myPictureView(context : Context, attrs : AttributeSet?) :
                 var bitmap = BitmapFactory.decodeFile(imagePath)
                 canvas!!.scale(2f, 2f, 0f, 0f)
                 canvas.drawBitmap(bitmap!!, 0f,0f,null)
+                bitmap!!.recycle()
             }
         } catch(e : Exception) {
 
