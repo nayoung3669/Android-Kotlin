@@ -23,8 +23,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ResultActivity"
-            android:label="result 액티비티 " />
+            android:name=".SecondActivity"
+            android:label="second 액티비티 " />
     </application>
 
 </manifest>
